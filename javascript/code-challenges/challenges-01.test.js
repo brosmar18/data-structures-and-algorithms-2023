@@ -12,7 +12,7 @@ const addOne = (arr) => {
   // Solution code here...
   let result = [];
   arr.forEach((value) => {
-    result.push(value +1);
+    result.push(value + 1);
   });
 
   return result;
@@ -47,6 +47,13 @@ Use `forEach` to loop over the input array. The modified strings should each be 
 
 const allUpperCase = (arr) => {
   // Solution code here...
+  let result = [];
+
+  arr.forEach((str) => {
+    result.push(str.toUpperCase());
+  });
+
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -61,10 +68,18 @@ Use `forEach` to build a new array of strings, each string modified by the callb
 
 const greeting = (word) => {
   // Solution code here...
+  return word.toUpperCase() + '!';
 };
 
 const speaker = (words, callback) => {
   // Solution code here...
+  let result = [];
+
+  words.forEach((word) => {
+    result.push(greeting(word));
+  });
+
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -85,10 +100,16 @@ Return the modified array.
 
 const addValues = (arr, value) => {
   // Solution code here...
+  arr.push(value);
 };
 
 const addNumbers = (num, arr, times, callback) => {
   // Solution code here...
+  for (let i = 0; i < times; i++) {
+    addValues(arr, num);
+  }
+
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -111,6 +132,15 @@ This function should use forEach to populate your grocery list based on the stor
 
 const createList = (availableItems) => {
   // Solution code here...
+  let groceryList = [];
+
+  availableItems.forEach((item) => {
+    if (item.available) {
+      groceryList.push(item.name);
+    }
+  });
+
+  return groceryList;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -129,6 +159,19 @@ Return the resulting output array.
 
 const fizzbuzz = (arr) => {
   // Solution code here...
+  let output = [];
+
+  arr.forEach((number) => {
+    if (number % 3 === 0) {
+      output.push('Fizz');
+    } else if (number % 5 === 0) {
+      output.push('Buzz');
+    } else {
+      output.push(number);
+    }
+  });
+
+  return output;
 };
 
 /* ------------------------------------------------------------------------------------------------
