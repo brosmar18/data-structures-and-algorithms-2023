@@ -27,7 +27,7 @@ let starWarsPeople = [
 const sortStarWarsCharacters = (starWarsArr) => {
   // Solution code here...
   starWarsArr.sort((a, b) => {
-    parseInt(b.height) - parseInt(a.height);
+    return parseInt(b.height) - parseInt(a.height);
   });
 
   return starWarsArr;
@@ -75,8 +75,8 @@ const howMuchPencil = (str) => {
   let result = [];
   // Solution code here...
 
-  for (let i = 0; i < str.length; i++){
-    let newString = str.splice(i);
+  for (let i = 0; i <= str.length; i++){
+    let newString = str.slice(i);
 
     result.push(newString);
 
