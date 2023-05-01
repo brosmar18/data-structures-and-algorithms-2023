@@ -81,6 +81,8 @@ Write a function named containsW that takes in a string. This function should us
 
 const containsW = (str) => {
   // Solution code here...
+  const pattern = /w/;
+  return pattern.test(str);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -97,6 +99,12 @@ For example:
 
 const isNum = (input) => {
   // Solution code here...
+  const str = input.toString();
+
+  // regular expression pattern to match any digit 0-9 /\d/.
+  const pattern = /\d/;
+
+  return pattern.test(str);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -108,6 +116,12 @@ Write a function named containsWorld that takes in a string or number of any len
 
 const containsWorld = (input) => {
   // Solution code here...
+  const str = input.toString();
+
+  const pattern = /world/;
+
+  return pattern.test(str);
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -120,6 +134,14 @@ Return an array containing all the matches.
 
 const isCapitalized = (str) => {
   // Solution code here...
+  const pattern = /[A-Z]/;
+
+
+  const matchingWords = str.match(pattern);
+
+
+  return matchingWords;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -130,6 +152,20 @@ Write a function named citiesAtoJ that takes in an array of city names and uses 
 
 const citiesAtoJ = (arr) => {
   // Solution code here...
+  const pattern = /^[A-Ja-j].*/;
+
+
+  const matchingCities = [];
+
+
+  for (let i = 0; i < arr.length; i++) {
+    if (pattern.test(arr[i])) {
+      matchingCities.push(arr[i]);
+    }
+  }
+
+
+  return matchingCities;
 };
 
 /* ------------------------------------------------------------------------------------------------
