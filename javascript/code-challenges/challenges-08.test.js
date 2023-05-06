@@ -134,14 +134,11 @@ Return an array containing all the matches.
 
 const isCapitalized = (str) => {
   // Solution code here...
-  const pattern = /[A-Z]/;
-
+  const pattern = /\b[A-Z][a-zA-Z]*\b/g;
 
   const matchingWords = str.match(pattern);
 
-
   return matchingWords;
-
 };
 
 /* ------------------------------------------------------------------------------------------------
