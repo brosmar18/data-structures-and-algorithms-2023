@@ -19,8 +19,13 @@ Becomes:
 ------------------------------------------------------------------------------------------------ */
 
 function transformToLis(obj) {
+  // Object.entries method used to get an array of key-value pairs from the object
   const entries = Object.entries(obj);
+
+  // map() used to iterate over each key-value pair and convert them to HTML list items
   const lis = entries.map(entry => `<li>${entry[0]}: ${entry[1]}</li>`);
+
+  // Return the resulting array of HTML list items
   return lis;
 }
 
@@ -36,13 +41,19 @@ For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 ------------------------------------------------------------------------------------------------ */
 
 const count = (target, input) => {
-  // Solution code here...
+  // reduce method used to iterate over each subarray and accumulate the count
   const count = input.reduce((accumulator, currentValue) => {
+    // filter method used to create a new array containing only the target values
     const targetCount = currentValue.filter(num => num === target).length;
+
+    // Add the target count to the accumulator
     return accumulator + targetCount;
   }, 0);
+
+  // Return the final count
   return count;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -55,9 +66,18 @@ For example, [[1, 2, 3, 4, 5], [6, 7, 2, 4, 5, 7], [9, 2, 3, 6,]] returns 66.
 ------------------------------------------------------------------------------------------------ */
 
 const totalSum = (input) => {
-  // Solution code here...
-  const flatArr = input.flat();
-  const sum = flatArr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+  let sum = 0;
+
+  // Iterate over each array in the input
+  for (let i = 0; i < input.length; i++) {
+    const subArray = input[i];
+
+    // Iterate over each element in the sub-array
+    for (let j = 0; j < subArray.length; j++) {
+      sum += subArray[j]; // Add each element to the sum
+    }
+  }
+
   return sum;
 };
 
@@ -74,9 +94,16 @@ For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 ------------------------------------------------------------------------------------------------ */
 
 const divisibleByFiveTwoToThePower = (input) => {
-  // Solution code here...
-  return input.map(innerArr => innerArr.filter(num => typeof num === 'number' && num % 5 === 0).map(num => Math.pow(2, num)));
+  // Use the `map` method to iterate over each inner array
+  // Remove elements that are not numbers or are not divisible by five using the `filter` method
+  // Raise 2 to the power of the resulting numbers using the `map` method
+  return input.map(innerArr =>
+    innerArr
+      .filter(num => typeof num === 'number' && num % 5 === 0)
+      .map(num => Math.pow(2, num))
+  );
 };
+
 
 
 
@@ -143,28 +170,38 @@ let starWarsData = [{
 }];
 
 let findMaleAndFemale = (data) => {
+  // filter used to create a new array containing only the characters with gender as 'male' or 'female'
   const maleAndFemaleCharacters = data.filter(character => character.gender === 'male' || character.gender === 'female');
+
+  // map used to extract the names of the male and female characters
   const names = maleAndFemaleCharacters.map(character => character.name);
+
+  // join used to combine the names into a single string separated by ' and '
   return names.join(' and ');
 };
 
 
 
-/* ------------------------------------------------------------------------------------------------
-CHALLENGE 6
 
-Write a function named findShortest that, given the Star Wars data from Challenge 6, uses any combination of filter, map and reduce to return the name of the character who is the shortest in height.
------------------------------------------------------------------------------------------------- */
+
 let findShortest = (data) => {
-  const shortestCharacter = data.reduce((shortest, current) => {
-    if (parseInt(current.height) < parseInt(shortest.height)) {
-      return current;
-    } else {
-      return shortest;
+  let shortestCharacter = null;
+
+  // Iterate over each character in the data using a for loop.
+  for (let i = 0; i < data.length; i++) {
+    const current = data[i];
+
+    // If `shortestCharacter` is `null` or the current character's height is shorter, update `shortestCharacter`.
+    if (!shortestCharacter || Number(current.height) < Number(shortestCharacter.height)) {
+      shortestCharacter = current;
     }
-  }, { height: Infinity }).name;
-  return shortestCharacter;
+  }
+
+  // Return the name of the shortest character.
+  return shortestCharacter.name;
 };
+
+
 
 
 /* ------------------------------------------------------------------------------------------------
