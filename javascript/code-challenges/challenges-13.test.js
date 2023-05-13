@@ -6,17 +6,28 @@ CHALLENGE 1 - Review
 Write a function named longestString that takes in an array of strings and returns the index position of the longest string.
 ------------------------------------------------------------------------------------------------ */
 
+
 const longestString = (arr) => {
+
   let maxIndex = -1;
+
   let maxLength = 0;
+
+  // Loop over each element in the array
   for (let i = 0; i < arr.length; i++) {
+    // If the current string's length is greater than maxLength
     if (arr[i].length > maxLength) {
+      // Update maxLength to the current string's length
       maxLength = arr[i].length;
+
+      // Update maxIndex to the current index
       maxIndex = i;
     }
   }
+
   return maxIndex;
 };
+
 
 
 /* ------------------------------------------------------------------------------------------------
@@ -29,11 +40,15 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['t', 
 
 const firstLetters = (arr) => {
   const result = [];
+
   for (let i = 0; i < arr.length; i++) {
+
     result.push(arr[i][0]);
   }
+
   return result;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -42,6 +57,25 @@ Write a function named findHappiness that takes in an array of strings and retur
 
 For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['this is great :)', ':)))))']
 ------------------------------------------------------------------------------------------------ */
+/*
+The includes() method is a used with arrays and strings.
+
+For arrays, includes() checks if a specified value is present in the array. It returns a boolean value - true if the value is found, false if not.
+
+For strings, includes() checks if a specified substring is present within the string. It returns true if the substring is found and false otherwise.
+
+In both cases, includes() performs a case-sensitive search.
+
+Example usage with an array:
+let array = [1, 2, 3];
+console.log(array.includes(2)); // returns true
+
+Example usage with a string:
+let string = "Hello, World!";
+console.log(string.includes("World")); // returns true
+*/
+
+
 
 const findHappiness = (arr) => {
   const result = [];
@@ -61,13 +95,22 @@ Write a function named standardizePhoneNumbers that takes in an array of phone n
 For example, (123) 456-7890 returns 1234567890
 ------------------------------------------------------------------------------------------------ */
 
+
 const standardizePhoneNumbers = (arr) => {
+
   const result = [];
+
+
   for (let i = 0; i < arr.length; i++) {
+    // replace() used to remove all non-digit characters from the current phone number
+    // The regular expression /\D/g matches all non-digit characters (the 'g' makes it global, so it matches multiple times)
+    // The replace method then replaces these matches with an empty string, removing them.
     result.push(arr[i].replace(/\D/g, ''));
   }
+
   return result;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -78,11 +121,13 @@ For example, 'abcdefg' returns 'bdf'
 ------------------------------------------------------------------------------------------------ */
 const onlyOddChars = (str) => {
   let result = '';
+
   for (let i = 1; i < str.length; i += 2) {
     result += str[i];
   }
   return result;
 };
+
 
 
 /* ------------------------------------------------------------------------------------------------
@@ -93,6 +138,8 @@ Write a function named allHappy that takes in an array of strings and returns a 
 
 const allHappy = (arr) => {
   for (let i = 0; i < arr.length; i++) {
+    // If the current string does not include ":)", return false immediately
+    // The includes method checks if a string contains a specified substring
     if (!arr[i].includes(":)")) {
       return false;
     }
@@ -107,8 +154,9 @@ CHALLENGE 7 - Stretch Goal
 Write a function named findAnything that takes in an array of strings, along with a target string. Return an array containing only those strings from the original array that contain the target string.
 ------------------------------------------------------------------------------------------------ */
 
+
 const findAnything = (arr, target) => {
-  const result = [];
+  let result = [];
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].includes(target)) {
       result.push(arr[i]);
@@ -116,6 +164,7 @@ const findAnything = (arr, target) => {
   }
   return result;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 8 - Stretch Goal
@@ -146,11 +195,7 @@ For example, [['Brook Testing', 'Actual Person'], ['Human Person', 'Brook again'
 ------------------------------------------------------------------------------------------------ */
 
 const unenrollBrook = (arr) => {
-  const result = [];
-  for (let i = 0; i < arr.length; i++) {
-    result.push(arr[i].filter((name) => !name.includes("Brook")));
-  }
-  return result;
+  // Solution code here...
 };
 
 
@@ -178,17 +223,7 @@ For example, ['Tuesday', 'Monday', 'Wednesday and Thursday', 'Tuesday 2', 'Thurs
 const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 const sortByDay = (arr) => {
-  const result = Array.from({ length: 7 }, () => []);
-  for (let i = 0; i < arr.length; i++) {
-    const days = arr[i].split(" and ");
-    for (let j = 0; j < days.length; j++) {
-      const dayIndex = daysOfWeek.indexOf(days[j]);
-      if (dayIndex >= 0) {
-        result[dayIndex].push(arr[i]);
-      }
-    }
-  }
-  return result;
+  // Solution code here...
 };
 
 
