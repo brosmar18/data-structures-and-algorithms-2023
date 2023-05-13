@@ -109,7 +109,7 @@ const biggerThanLuke = (arr) => {
   // Find Luke's mass by filtering the array for Luke and getting the 'mass' property
   const lukeMass = parseInt(arr.filter(character => character.name === 'Luke Skywalker')[0].mass);
 
-  // Filter used to fiind mass greater than 'Luke'.
+  // Filter used to fiind mass greater than 'Luke'
   // Join the names into a string separated by ' - '
   return arr.filter(character => parseInt(character.mass) > lukeMass)
     .map(character => character.name)
