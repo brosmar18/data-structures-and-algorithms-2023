@@ -8,15 +8,23 @@ Write a function named `addOne` that takes an array of numbers, and returns a ne
 Use `forEach` to loop over the input array and work with each value.  Push the new value into a local array. Return the local array;
 ------------------------------------------------------------------------------------------------ */
 
+// This line is defining a function called 'addOne'. It takes an array of numbers (we call it 'arr') as an input.
 const addOne = (arr) => {
-  // Solution code here...
+
+  // Here we're creating a new empty array named 'result'. We will use this to store our new numbers.
   let result = [];
+
+  // 'forEach' is a method that allows us to loop through each item in the 'arr' array. For every item, it will run the code inside the brackets.
   arr.forEach((value) => {
+
+    // 'value' represents the current item we're looking at in the array. We add 1 to this value and then add it to the end of the 'result' array.
     result.push(value + 1);
   });
 
+  // After we have looped through all items in the 'arr' array and added them to 'result', we return the 'result' array. This is the output of the function.
   return result;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
@@ -26,16 +34,23 @@ Write a function named `addExclamation` that takes an array of strings, and retu
 Use `forEach` to loop over the input array. Modify each string, and add the updated value into a local array. Return the local array;
 ------------------------------------------------------------------------------------------------ */
 
+// This line is defining a function called 'addExclamation'. It takes an array of strings (we call it 'arr') as input.
 const addExclamation = (arr) => {
-  // Solution code here...
+
+  // Here we're creating a new empty array named 'result'. We will use this to store our new strings.
   let result = [];
 
+  // 'forEach' is a method that allows us to loop through each item in the 'arr' array. For every item, it will run the code inside the brackets.
   arr.forEach((str) => {
+
+    // 'str' represents the current string we're looking at in the array. We add an exclamation mark to the end of this string and then add it to the end of the 'result' array.
     result.push(str + '!');
   });
 
+  // After we have looped through all items in the 'arr' array and added them to 'result', we return the 'result' array. This is the output of the function.
   return result;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
