@@ -52,22 +52,36 @@ let characters = [
   }
 ];
 
+
 const sortByChildren = (charArray) => {
-  // Solution code here...
+
+  // The 'sort' function is called on the 'charArray'. This method sorts the items in the array in place and returns the array.
+  // We're giving 'sort' a custom sorting function, which takes two objects from the array (a and b).
   return charArray.sort((a, b) => {
+
+    // We get the number of children of the current characters (a and b) by checking the length of their 'children' arrays.
     const aChildrenCount = a.children.length;
     const bChildrenCount = b.children.length;
 
+    // If the characters have the same number of children...
     if (aChildrenCount === bChildrenCount) {
+
+      // We compare their house names (which are strings) using the '<' and '>' operators.
+      // These operators can be used to compare strings in lexicographical (dictionary) order.
       if (a.house < b.house) {
+        // If 'a' comes before 'b', we return -1, which means 'a' should come before 'b' in the sorted array.
         return -1;
-      } else if (a.house > b.house){
+      } else if (a.house > b.house) {
+        // If 'a' comes after 'b', we return 1, which means 'a' should come after 'b' in the sorted array.
         return 1;
       } else {
+        // If 'a' and 'b' are equal, we return 0, which means their order doesn't matter.
         return 0;
       }
     }
 
+    // If 'a' and 'b' have a different number of children, we subtract the number of 'b's children from the number of 'a's children.
+    // If the result is negative, 'a' will come before 'b'. If it's positive, 'a' will come after 'b'.
     return aChildrenCount - bChildrenCount;
   });
 };
@@ -79,9 +93,15 @@ Write a function named containsW that takes in a string. This function should us
 
 ------------------------------------------------------------------------------------------------ */
 
+
 const containsW = (str) => {
-  // Solution code here...
+
+  // A regular expression (regex) pattern is defined. Regular expressions are patterns used to match character combinations in strings.
+  // Here, the pattern is /w/, which matches any 'w' character in the string.
   const pattern = /w/;
+
+  // The 'test' method is called on the pattern. This method tests for a match in the string.
+  // If it finds a 'w', it returns true. If it doesn't, it returns false.
   return pattern.test(str);
 };
 
@@ -97,15 +117,21 @@ For example:
 'hello world' returns false
 ------------------------------------------------------------------------------------------------ */
 
+
 const isNum = (input) => {
-  // Solution code here...
+
+  // Regardless of whether the input is a number or a string, we convert it to a string using the 'toString' method.
+  // This is because regular expressions work with strings, not numbers.
   const str = input.toString();
 
-  // regular expression pattern to match any digit 0-9 /\d/.
+  // This pattern, /\d/, matches any digit from 0 to 9.
   const pattern = /\d/;
 
+  // We use the 'test' method on the pattern to check whether our string contains any digits.
+  // The 'test' method returns true if it finds a match in the string, and false if it doesn't.
   return pattern.test(str);
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -114,15 +140,21 @@ Write a function named containsWorld that takes in a string or number of any len
 
 ------------------------------------------------------------------------------------------------ */
 
+
 const containsWorld = (input) => {
-  // Solution code here...
+
+  // Regardless of whether the input is a number or a string, I'm converting it to a string using the 'toString' method.
+  // This is because regular expressions work with strings, not numbers.
   const str = input.toString();
 
+  // This pattern, /world/, matches the string 'world' exactly.
   const pattern = /world/;
 
+  // Using the 'test' method on the pattern to check whether our string contains the word 'world'.
+  // The 'test' method returns true if it finds a match in the string, and false if it doesn't.
   return pattern.test(str);
-
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -132,14 +164,25 @@ Write a function named isCapitalized that takes in a string. This function shoul
 Return an array containing all the matches.
 ------------------------------------------------------------------------------------------------ */
 
+
 const isCapitalized = (str) => {
-  // Solution code here...
+
+  // \b is a word boundary, [A-Z] matches any uppercase letter, [a-zA-Z]* matches any sequence of letters (including no letters at all), and the final \b is another word boundary.
+  // The 'g' at the end is a flag that makes the pattern search for all matches in the string, rather than stopping at the first match.
   const pattern = /\b[A-Z][a-zA-Z]*\b/g;
 
-  const matchingWords = str.match(pattern);
+  // Using the 'match' method on the string to find all matches of the pattern. This returns an array of all matches, or null if no matches are found.
+  let matches = str.match(pattern);
 
-  return matchingWords;
+  // If 'match' returned null (which means no matches were found), returning an empty array.
+  if (matches === null) {
+    return [];
+  }
+
+  // If matches were found, returning the array of matches.
+  return matches;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
@@ -147,23 +190,32 @@ CHALLENGE 6
 Write a function named citiesAtoJ that takes in an array of city names and uses a regular expression pattern to return a new array containing any cities that begin with the letters A through J, inclusive.
 ------------------------------------------------------------------------------------------------ */
 
+
 const citiesAtoJ = (arr) => {
-  // Solution code here...
+
+  // This pattern, /^[A-Ja-j].*/, matches any string that begins with a letter from A to J (in either uppercase or lowercase).
+  // '^' indicates the start of the string, [A-Ja-j] matches any letter from A to J, and '.*' matches any sequence of characters (including no characters at all).
   const pattern = /^[A-Ja-j].*/;
 
-
+  // Creating an empty array to store the city names that match the pattern.
   const matchingCities = [];
 
-
+  // Using a for loop to iterate over each city name in the input array.
   for (let i = 0; i < arr.length; i++) {
+
+    // Using the 'test' method on the pattern to check whether the current city name matches the pattern.
+    // If it does, 'test' returns true; if it doesn't, 'test' returns false.
     if (pattern.test(arr[i])) {
+
+      // If the city name matches the pattern, adding it to the 'matchingCities' array using the 'push' method.
       matchingCities.push(arr[i]);
     }
   }
 
-
+  // After all city names have been checked, returning the 'matchingCities' array. This contains all city names that started with a letter from A to J.
   return matchingCities;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
@@ -281,7 +333,7 @@ describe('Testing challenge 4', () => {
   test('It should return false if the input does not contain the word "world"', () => {
     expect(containsWorld('hello everyone')).toBe(false);
   });
-})
+});
 
 describe('Testing challenge 5', () => {
   test('It should only return words that begin with a capital letter', () => {
