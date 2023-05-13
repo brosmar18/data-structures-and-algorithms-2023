@@ -10,10 +10,12 @@ Write a function named screenForNames that takes in an array of strings and uses
 
 ------------------------------------------------------------------------------------------------ */
 
+
 const screenForNames = (arr) => {
   const regex = /^(Mr\.|Mrs\.|Ms\.|Dr\.)\s[A-Za-z]+$/;
   return arr.filter(name => regex.test(name));
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
@@ -23,8 +25,11 @@ Write a function named toTitleCase that takes in an array of strings and returns
 For example, ['apple', 'banana', 'MacGyver'] returns ['Apple', 'Banana', 'MacGyver'].
 ------------------------------------------------------------------------------------------------ */
 
+
 const toTitleCase = (arr) => {
-  return arr.map(str => str.charAt(0).toUpperCase() + str.slice(1));
+  return arr.map(str => {
+    return str[0].toUpperCase() + str.slice(1);
+  });
 };
 
 
@@ -99,10 +104,16 @@ let starWarsData = [{
   gender: 'n/a'
 }];
 
-let biggerThanLuke = (arr) => {
-  const lukeMass = parseInt(arr.find(char => char.name === 'Luke Skywalker').mass);
-  const biggerChars = arr.filter(char => char.name !== 'Luke Skywalker' && parseInt(char.mass) > lukeMass);
-  return biggerChars.map(char => char.name).join(' - ');
+
+const biggerThanLuke = (arr) => {
+  // Find Luke's mass by filtering the array for Luke and getting the 'mass' property
+  const lukeMass = parseInt(arr.filter(character => character.name === 'Luke Skywalker')[0].mass);
+
+  // Filter used to fiind mass greater than 'Luke'.
+  // Join the names into a string separated by ' - '
+  return arr.filter(character => parseInt(character.mass) > lukeMass)
+    .map(character => character.name)
+    .join(' - ');
 };
 
 
@@ -172,35 +183,43 @@ Here is a sample board:
 ];
 ------------------------------------------------------------------------------------------------ */
 
+
 const helpCheck = (board, row1, col1, row2, col2, row3, col3) => {
+
   const symbol1 = board[row1][col1];
   const symbol2 = board[row2][col2];
   const symbol3 = board[row3][col3];
   return symbol1 !== '' && symbol1 === symbol2 && symbol2 === symbol3;
 };
 
+
 const detectTicTacToeWin = (board) => {
-  // Check rows
+  // Check each row for a win
   for (let row = 0; row < 3; row++) {
+    // If any row contains a win, return true
+    // function invocation used to call helpCheck with specific arguments.
     if (helpCheck(board, row, 0, row, 1, row, 2)) {
       return true;
     }
   }
 
-  // Check columns
+  // Check each column for a win
   for (let col = 0; col < 3; col++) {
+    // If any column contains a win, return true
     if (helpCheck(board, 0, col, 1, col, 2, col)) {
       return true;
     }
   }
 
-  // Check diagonals
+  // Check the two diagonals for a win
   if (helpCheck(board, 0, 0, 1, 1, 2, 2) || helpCheck(board, 0, 2, 1, 1, 2, 0)) {
     return true;
   }
 
+  // If no win has been detected, return false
   return false;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
