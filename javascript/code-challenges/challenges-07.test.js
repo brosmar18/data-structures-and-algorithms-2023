@@ -69,7 +69,7 @@ Your function should use slice within a loop and return an array of each success
 
 For example, if the input is 'Welcome', the output will be:
 ['Welcome', 'elcome', 'lcome', 'come', 'ome', 'me', 'e', ''].
------------------------------------------------------------------------------------------------- */
+-------------------------------------------------------------------------------------------- */
 
 const howMuchPencil = (str) => {
   let result = [];
@@ -163,9 +163,28 @@ Write a function named splitFoods that uses split to produce the same output as 
 You may also use other string or array methods.
 ------------------------------------------------------------------------------------------------ */
 
+
 const splitFoods = (recipe) => {
+
+  // We're creating a new empty array named 'result'. We will use this to store our food items.
   let result = [];
-  // Solution code here...
+
+  // Here we're using a 'forEach' loop to go through each ingredient in the recipe.
+  recipe.ingredients.forEach((ingredient) => {
+
+    // The 'split' method divides a string into an array of substrings. Here, we're splitting the ingredient string at each space (' ').
+    // This gives us an array where the first item is the amount, the second is the unit, and the rest is the food name.
+    let parts = ingredient.split(' ');
+
+    // We use 'slice' to get all items in the array starting from the third item (index 2), because the first two items are the amount and the unit.
+    // 'join' then combines these items back into a single string, with a space between each item. This is the food name.
+    let foodName = parts.slice(2).join(' ');
+
+    // We add the food name to the end of the 'result' array.
+    result.push(foodName);
+  });
+
+  // After we have looped through all the ingredients and added their names to 'result', we return the 'result' array. This is the output of the function.
   return result;
 };
 
@@ -179,11 +198,27 @@ Write a function named stepAction that takes in the recipe and extracts the acti
 Return a new array containing just the verbs. For example, ['Mix until evenly distributed'] returns ['Mix'].
 ------------------------------------------------------------------------------------------------ */
 
+
 const stepActions = (recipe) => {
+
+  // We're creating a new empty array named 'result'. We will use this to store our action verbs.
   let result = [];
-  // Solution code here...
+
+  // Here we're using a 'forEach' loop to go through each step in the recipe.
+  recipe.steps.forEach((step) => {
+
+    // The 'split' method divides a string into an array of substrings. Here, we're splitting the step string at the first space (' ').
+    // This gives us an array where the first item is the action verb.
+    let actionVerb = step.split(' ')[0];
+
+    // We add the action verb to the end of the 'result' array.
+    result.push(actionVerb);
+  });
+
+  // After we have looped through all the steps and added the action verbs to 'result', we return the 'result' array. This is the output of the function.
   return result;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 9 - Stretch Goal
