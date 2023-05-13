@@ -10,6 +10,7 @@ At the end of lecture each day, a new challenge will be published in Canvas. Cop
 
 Every code challenge file is divided into two sections: challenges and tests. You will need to add your own solutions to each challenge but should not modify the tests in any way. These tests will ensure that your solution is meeting the requirements of each challenge. Even though you may not modify the tests, you are encouraged to read them to see what is being evaluated.
 
+
 - Run your test from the root of the `data-structures-and-algorithms` repository, as follows
   - Run All Tests: `npm test`
   - Run a specific test: `npm test challenges-01`
