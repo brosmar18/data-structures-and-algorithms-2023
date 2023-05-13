@@ -7,8 +7,11 @@ Write a function named replaceZeros that, given a string, uses Regex to replace 
 ------------------------------------------------------------------------------------------------ */
 
 const replaceZeros = (string) => {
+  // Using the `replace()` method with a regular expression `/0/g` to match all occurrences of '0' in the string.
+  // Replacing each occurrence with the word 'zero'.
   return string.replace(/0/g, 'zero');
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
@@ -19,9 +22,18 @@ If the PIN is four numerical digits long, return true. Otherwise, return false.
 ------------------------------------------------------------------------------------------------ */
 
 const validatePin = (pin) => {
-  const regex = /^\d{4}$/; // regular expression to match 4 digits
+  // The pattern ^\d{4}$ matches the start (^) and end ($) of the string, ensuring that the PIN has exactly four digits.
+  // \d matches any digit character (0-9), and {4} specifies that there should be exactly four occurrences of the digit character.
+  const regex = /^\d{4}$/;
+
+
+  // The `test()` method of the regular expression object is used to check if a string matches a specified pattern.
+  // It returns a boolean value of true if the string matches the pattern, and false otherwise.
+  // commonly used in conjunction with regular expressions to perform pattern matching and validation.
+
   return regex.test(pin);
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -31,10 +43,20 @@ Write a function named validateWord that uses a regular expression pattern to va
 If the word is between 5 and 10 characters long, return true. Otherwise, return false.
 ------------------------------------------------------------------------------------------------ */
 
+
 const validateWord = (word) => {
-  const regex = /^\w{5,10}$/; // regular expression to match words between 5 and 10 characters
-  return typeof word === 'string' && regex.test(word);
+  // Convert word to string to handle number inputs
+  word = String(word);
+
+  // Define regex pattern for words composed of alphabetic characters and length between 5 and 10
+  const regex = /^[a-zA-Z]{5,10}$/;
+
+  // Return true if word matches the regex pattern, false otherwise
+  return regex.test(word);
 };
+
+
+
 
 
 
@@ -46,10 +68,15 @@ Write a function named hasNumber that uses a regular expression pattern to deter
 If it does, return true. If not, return false.
 ------------------------------------------------------------------------------------------------ */
 
+
 const hasNumber = (string) => {
-  const regex = /^[a-zA-Z]+\d+/; // regular expression to match one or more letter followed by one or more digit
+  // Define regex pattern for one or more letter(s) followed by one or more digit(s)
+  const regex = /^[a-zA-Z]+\d+/;
+
+  // Return true if string matches the regex pattern, false otherwise
   return regex.test(string);
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -67,10 +94,15 @@ Return either true or false.
 Note: if you ever need to validate an email using a regex in practice, the Internet has the actual regex you should use. It's many many lines long.
 ------------------------------------------------------------------------------------------------ */
 
+
 const validateEmail = (email) => {
-  const regex = /^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)?@[a-zA-Z0-9]+\.(com|net|org)$/; // regular expression to match email addresses
+  // Define regex pattern for the email validation
+  const regex = /^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)?@[a-zA-Z0-9]+\.(com|net|org)$/;
+
+  // Return true if email matches the regex pattern, false otherwise
   return regex.test(email);
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
@@ -92,8 +124,12 @@ Your function should include a single regular expression pattern that matches an
 
 Return either true or false.
 ------------------------------------------------------------------------------------------------ */
+
 const validatePhoneNumber = (phoneNumber) => {
-  const regex = /^(\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$/; // regular expression to match phone numbers
+  // Define regex pattern for the phone number validation
+  const regex = /^(\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$/;
+
+  // Return true if phone number matches the regex pattern, false otherwise
   return regex.test(phoneNumber);
 };
 
@@ -107,11 +143,14 @@ For example, findTagNames(['<h1>Hello, world!</h1>', '<p>Welcome to my site</p>'
 findTagNames(['<div><h1>Hello, world!</h1></div>', '<p>Welcome to my site</p>']) returns ['/h1', '/div', '/p'].
 ------------------------------------------------------------------------------------------------ */
 
+
+
 const findTagNames = elements => {
-  const regex = /<\/\w+>/g; // regular expression to match closing tags
-  const closingTags = elements.join(' ').match(regex);
-  return closingTags.map(tag => tag.slice(2, -1));
+
 };
+
+
+
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
