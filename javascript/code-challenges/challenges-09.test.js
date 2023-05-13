@@ -1,5 +1,11 @@
 'use strict';
 
+// The for...of loop is used to iterate over elements in an iterable object, such as an array.
+// It provides an easy way to loop through each element without the need for an index or manual iteration.
+
+// Syntax: for (variable of iterable) { ... }
+
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1 - Review
 
@@ -8,12 +14,18 @@ using the 'reduce' method.
 
 E.g. [4,2,7,5,9,2] -> 9
 ------------------------------------------------------------------------------------------------ */
+
 const maxInArray = (arr) => {
-  // Solution code here...
+
+  // The 'reduce' method works by iterating over each element in the array from left to right, applying a function that you provide to each element in turn, and accumulating a single output value.
+  // In this case, the function being applied takes two arguments: 'max', which is the accumulated value and 'current', which is the current element being examined.
+  // The function returns the greater of 'max' and 'current', as determined by the 'Math.max' function. This becomes the new accumulated value for the next iteration.
+  // When 'reduce' has finished examining all elements in the array, it returns the final accumulated value, which is the maximum value in the array.
   return arr.reduce((max, current) => {
     return Math.max(max, current);
   });
 };
+
 
 
 /* ------------------------------------------------------------------------------------------------
@@ -23,15 +35,30 @@ Write a function named getCourseKeys that takes in the courseInfo object and ret
 
 For example: (['name', 'duration', 'topics', 'finalExam']).
 ------------------------------------------------------------------------------------------------ */
-const courseInfo = { name: 'Code 301', duration: { dayTrack: '4 weeks', eveningTrack: '8 weeks'},
+
+
+const courseInfo = {
+  name: 'Code 301',
+  duration: { dayTrack: '4 weeks', eveningTrack: '8 weeks' },
   topics: ['SMACSS', 'APIs', 'NodeJS', 'SQL', 'jQuery', 'functional programming'],
   finalExam: true
 };
 
+
 const getCourseKeys = (obj) => {
-  // Solution code here...
-  return Object.keys(obj);
+  // Initializing an empty array to hold the keys.
+  let keys = [];
+
+  // Using a for-in loop to iterate over the properties of the object.
+  // For each property, the property name (i.e., the key) is pushed into the 'keys' array.
+  for (let key in obj) {
+    keys.push(key);
+  }
+
+  // Returning the array of keys.
+  return keys;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -41,10 +68,32 @@ Write a function named checkValues that takes in an object and a value and retur
 
 ------------------------------------------------------------------------------------------------ */
 
-const checkValues = (obj, value) => {
-  // Solution code here...
+
+// const checkValues = (obj, value) => {
+// Using a for-in loop to iterate over the properties of the object.
+// for (let key in obj) {
+// For each property, check if the property's value matches the 'value' parameter.
+// if (obj[key] === value) {
+// If a match is found, return true.
+//     return true;
+//   }
+// }
+
+// If the loop completes without finding a match, return false.
+// return false;
+// };
+
+// Solve using Object.values method.
+
+
+function checkValues(obj, value) {
+  // The 'Object.values' method is used to get an array of the object's own enumerable property values,
+  // those values assigned to properties defined directly upon the object itself.
+  // Then 'includes' method is used to check if the 'value' is present in that array.
+  // It will return true if the value is found, and false otherwise.
   return Object.values(obj).includes(value);
-};
+}
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -65,11 +114,48 @@ HR has asked you to change the data to make it easier to print so that it looks 
 
 ------------------------------------------------------------------------------------------------ */
 
+/*
+The Object.entries() returns an array of a given object's own enumerable string-keyed property [key, value] pairs, in the same order as that provided by a for...in loop.
+
+The output array's elements are arrays themselves in this format: [key, value].
+
+For example:
+
+const object = { foo: 'bar', baz: 42 };
+
+console.log(Object.entries(object));
+// expected output: [ ['foo', 'bar'], ['baz', 42] ]
+
+Note: The order of the array returned by Object.entries() does not depend on how an object is defined. If there is a need for certain ordering then the array should be sorted first like Object.entries(obj).sort((a, b) => a[0] - b[0]);
+*/
+
+
+// const updateNumbers = (obj) => {
+// The 'Object.entries' method is used to get an array of the object's own enumerable string-keyed property [key, value] pairs.
+// This array is then transformed using the 'map' method.
+// For each pair in the array, destructuring assignment is used to get the name and phone number.
+// A string is returned that combines the name and phone number with a colon and space in between.
+//   return Object.entries(obj).map(([name, phoneNumber]) => {
+//     return `${name}: ${phoneNumber}`;
+//   });
+// };
+
+
 const updateNumbers = (obj) => {
-  // Solution code here...
-  return Object.entries(obj).map(([name, phoneNumber]) => {
-    return `${name}: ${phoneNumber}`;
-  });
+  // Initializing an empty array to store the transformed data.
+  let updatedList = [];
+
+  // Using a for-in loop to iterate over each property in the object.
+  // For each property, the variable 'key' will hold the property name (in this case, a name),
+  // and 'obj[key]' will give us the corresponding value (the phone number).
+  for (let key in obj) {
+    // Pushing a new string to the 'updatedList' array.
+    // This string is formatted to include the name, a colon and a space, and the phone number.
+    updatedList.push(`${key}: ${obj[key]}`);
+  }
+
+  // Returning the final array.
+  return updatedList;
 };
 
 
@@ -124,9 +210,15 @@ const characters = [
 ];
 
 const getHouses = (arr) => {
+  // Initializing an empty array to store the names of the houses.
   let houses = [];
-  // Solution code here...
+
+  // Using the 'map' method to iterate over each character object in the array.
+  // For each character, we extract the 'house' property and add it to the 'houses' array.
   houses = arr.map(character => character.house);
+  // character.house accesses the value of the "house" property of each "character" object.
+
+  // Returning the final array containing the names of the houses.
   return houses;
 };
 
@@ -142,40 +234,51 @@ For example:
 hasChildrenValues(characters, 'Cersei') will return true
 hasChildrenValues(characters, 'Sansa') will return false
 ------------------------------------------------------------------------------------------------ */
+
 const hasChildrenValues = (arr, character) => {
-  // Solution code here...
+  // Using a for...of loop to iterate over each object in the array.
   for (let obj of arr) {
+    // Checking if the 'name' property of the current object matches the given character name.
     if (obj.name === character) {
-      return obj.hasOwnProperty('children') && obj.children.length > 0;
+      // Using Object.values to get an array of property values of the object.
+      // Checking if the resulting array includes an array value indicating the character has children.
+      // If the 'children' property exists and its value is an array with a length greater than 0,
+      // it means the character has children, so we return true.
+      return Object.values(obj).some(value => Array.isArray(value) && value.length > 0);
     }
   }
+  // If the loop completes without finding a matching character, we return false.
   return false;
 };
-
-
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
 
-Write a function named hasChildrenEntries that is similar to your hasChildrenValues function from challenge 4, but uses the data's entries instead of its values.
+Write a function named hasChildrenEntries that is similar to your hasChildrenValues function from challenge 6, but uses the data's entries instead of its values.
 
 The input and output of this function are the same as the input and output from challenge 3.
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenEntries = (arr, character) => {
-  // Solution code here...
+  // Using a for...of loop to iterate over each object in the array.
   for (let obj of arr) {
+    // Checking if the 'name' property of the current object matches the given character name.
     if (obj.name === character) {
-      for (let [key, value] of Object.entries(obj)) {
-        if (key === 'children' && value.length > 0) {
+      // Using Object.entries to get an array of key-value pairs of the object.
+      // Checking if any entry value indicates the character has children.
+      // If the 'children' property exists and its value is truthy,
+      // it means the character has children, so we return true.
+      const entries = Object.entries(obj);
+      for (let [key, value] of entries) {
+        if (key === 'children' && value) {
           return true;
         }
       }
     }
   }
+  // If the loop completes without finding a matching character, we return false.
   return false;
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 8 - Stretch Goal
 
@@ -183,10 +286,9 @@ Write a function named totalCharacters that takes in an array and returns the nu
 ------------------------------------------------------------------------------------------------ */
 
 const totalCharacters = (arr) => {
-  // Solution code here...
+  // Using the 'length' property to return the number of characters in the array.
   return arr.length;
 };
-
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 9 - Stretch Goal
@@ -199,16 +301,31 @@ For example: [{ house: 'Stark', members: 7 }, { house: 'Arryn', members: 3 }, ..
 ------------------------------------------------------------------------------------------------ */
 
 const houseSize = (arr) => {
-  const sizes = [];
-  // Solution code here...
-  arr.forEach(character => {
-    const houseIndex = sizes.findIndex(houseObj => houseObj.house === character.house);
-    if (houseIndex === -1) {
-      sizes.push({ house: character.house, members: 1 });
+  // Creating an empty object to store the house names and member counts
+  const houseMap = {};
+
+  // Iterating over each character in the array
+  for (let character of arr) {
+    // Extracting the house name from the current character
+    const house = character.house;
+
+    // Checking if the house name already exists in the houseMap
+    // Using the '.hasOwnProperty' method to check if a property exists in an object.
+    // It returns a boolean value indicating whether the object has the specified property.
+
+    if (houseMap.hasOwnProperty(house)) {
+      // If the house name exists, incrementing the member count by 1
+      houseMap[house].members++;
     } else {
-      sizes[houseIndex].members++;
+      // If the house name does not exist, adding the house to the houseMap with an initial member count of 1
+      houseMap[house] = { house, members: 1 };
     }
-  });
+  }
+
+  // Converting the houseMap object into an array of house objects
+  const sizes = Object.values(houseMap);
+
+  // Finally, returning the sizes array that contains objects for each house with the name of the house and the number of members
   return sizes;
 };
 
@@ -232,21 +349,9 @@ For example: [ { house: 'Stark', members: 6 }, { house: 'Arryn', members: 2 }, .
 const deceasedSpouses = ['Catelyn', 'Lysa', 'Robert', 'Khal Drogo', 'Alerie'];
 
 const houseSurvivors = (arr) => {
-  const survivors = [];
-  // Solution code here...
-  arr.forEach(character => {
-    const houseIndex = survivors.findIndex(houseObj => houseObj.house === character.house);
-    const memberCount = deceasedSpouses.includes(character.spouse) ? 1 : 2;
+  // Solution
 
-    if (houseIndex === -1) {
-      survivors.push({ house: character.house, members: memberCount });
-    } else {
-      survivors[houseIndex].members += memberCount;
-    }
-  });
-  return survivors;
 };
-
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
