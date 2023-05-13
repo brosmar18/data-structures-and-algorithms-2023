@@ -8,12 +8,15 @@ Write a function named returnTen, takes in a string and uses split and splice to
 ------------------------------------------------------------------------------------------------ */
 
 function returnTen(str) {
-  // Solution code here...
+  // Convert the string into an array of individual characters using the 'split' method.
   const charArray = str.split('');
+
+  // Use the 'splice' method to extract the last 10 characters from the array and return them as a new array.
   const lastTen = charArray.splice(-10);
+
+  // Return the resulting array containing the last 10 characters.
   return lastTen;
 }
-
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
@@ -30,18 +33,24 @@ For example:
 return: 23
 ------------------------------------------------------------------------------------------------ */
 const findMax = (matrix) => {
-  // Solution code here...
-  let max = -Infinity;
+  // Initialize 'max' variable to store the maximum value, starting with the first element of the matrix.
+  let max = matrix[0][0];
+
+  // Iterate over each row in the matrix using a 'for' loop.
   for (let i = 0; i < matrix.length; i++) {
+    // Iterate over each element in the current row using a nested 'for' loop.
     for (let j = 0; j < matrix[i].length; j++) {
+      // Check if the current element is greater than the current maximum value.
+      // If so, update the 'max' value to the new maximum.
       if (matrix[i][j] > max) {
         max = matrix[i][j];
       }
     }
   }
+
+  // Return the maximum value found in the matrix.
   return max;
 };
-
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -58,13 +67,19 @@ For example:
 return: 35
 ------------------------------------------------------------------------------------------------ */
 const totalSum = (matrix) => {
-  // Solution code here...
+
   let sum = 0;
+
+  // Iterate over each row in the matrix using a 'for' loop.
   for (let i = 0; i < matrix.length; i++) {
+    // Iterate over each element in the current row using a nested 'for' loop.
     for (let j = 0; j < matrix[i].length; j++) {
+      // Add the current element to the 'sum'.
       sum += matrix[i][j];
     }
   }
+
+  // Return the total sum of all the numbers in the matrix.
   return sum;
 };
 
@@ -92,19 +107,29 @@ const alkiBeach = [33, 31, 147, 130, 27, 93, 38, 126, 141, 63, 46, 17];
 const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
-  // Solution code here...
+  // Get the number of hours the stores are open by accessing the length of the first store's sales data.
   const hours = stores[0].length;
-  const totalSales = new Array(hours).fill(0);
 
-  for (let store of stores) {
-    store.map((sales, hour) => {
-      totalSales[hour] += sales;
-    });
+  // Create an array named 'totalSales' with the same length as the number of hours.
+  const totalSales = [];
+
+  // Iterate over each hour of operation using a for loop.
+  for (let hour = 0; hour < hours; hour++) {
+    let hourTotal = 0;
+
+    // Iterate over each store's sales data using a for loop.
+    for (let store of stores) {
+      // Add the sales value for the current hour to the hourTotal.
+      hourTotal += store[hour];
+    }
+
+    // Push the hourTotal to the 'totalSales' array.
+    totalSales.push(hourTotal);
   }
 
+  // Return the 'totalSales' array, which contains the total number of cookies sold per hour for all of the stores combined.
   return totalSales;
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
 
@@ -116,19 +141,22 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 ------------------------------------------------------------------------------------------------ */
 
 const salesData = (hours, data) => {
-  // Solution code here...
+  // Create an empty array named 'formattedData' to store the formatted sales data.
   const formattedData = [];
 
+  // Use the 'forEach' method to iterate over the 'data' array, which represents the sales data for each hour.
   data.forEach((sales, index) => {
+    // For each iteration, create an object containing the number of cookies sold and the corresponding time.
+    // Push this object to the 'formattedData' array.
     formattedData.push({
       sales: `${sales} cookies`,
       time: hours[index],
     });
   });
 
+  // Return the 'formattedData' array containing the formatted sales data.
   return formattedData;
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
 
@@ -151,20 +179,27 @@ const errands = [
 ];
 
 const howManyTreats = (arr) => {
-  // Solution code here...
+
   let treatsQuantity = 0;
 
+  // Iterate over each errand in the 'arr' array.
   for (let errand of arr) {
+    // Check if the store property of the current errand object is 'Pet store'.
     if (errand.store === 'Pet store') {
+      // If the store is 'Pet store', iterate over each item in the items array of that errand.
       for (let item of errand.items) {
+        // Check if the name property of the current item is 'Treats'.
         if (item.name === 'Treats') {
+          // If the name is 'Treats', update the 'treatsQuantity' to the quantity of treats for that item.
           treatsQuantity = item.quantity;
+          // Break out of the inner loop since we found the treats.
           break;
         }
       }
     }
   }
 
+  // Return the final value of 'treatsQuantity'.
   return treatsQuantity;
 };
 
@@ -188,13 +223,15 @@ The top row of the board is considered row zero and row numbers increase as they
 ------------------------------------------------------------------------------------------------ */
 
 const battleship = (board, row, col) => {
+
   if (board[row][col] === '#') {
+    // If it is, return 'hit'.
     return 'hit';
   } else {
+    // If it's not, return 'miss'.
     return 'miss';
   }
-}
-
+};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 8 - Stretch Goal
@@ -205,13 +242,22 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 ------------------------------------------------------------------------------------------------ */
 
 const calculateProduct = (numbers) => {
+
   let product = 1;
+
+  // Iterate over each array in the outer array.
   for (let i = 0; i < numbers.length; i++) {
+    // Get the current inner array.
     let innerArr = numbers[i];
+
+    // Iterate over each number in the inner array.
     for (let j = 0; j < innerArr.length; j++) {
+      // Multiply the current number with the product.
       product *= innerArr[j];
     }
   }
+
+  // Return the final product.
   return product;
 };
 
@@ -232,18 +278,27 @@ const weeklyTemperatures = [
 ];
 
 const averageDailyTemperature = (weather) => {
+
   let sum = 0;
   let count = 0;
 
+  // Iterate over each week in the weather array.
   for (let week of weather) {
+    // Iterate over each temperature in the current week.
     for (let temp of week) {
+      // Add the current temperature to the sum and increment the count.
       sum += temp;
       count++;
     }
   }
 
-  return sum / count;
+  // Calculate the average by dividing the sum by the count.
+  const average = sum / count;
+
+  // Return the calculated average.
+  return average;
 };
+
 
 
 /* ------------------------------------------------------------------------------------------------
@@ -264,23 +319,7 @@ let lowestWeeklyTemperatureData = [
 ];
 
 const lowestWeeklyAverage = (weather) => {
-  let lowest = Infinity;
-
-  for (let week of weather) {
-    let sum = 0;
-
-    for (let temp of week) {
-      sum += temp;
-    }
-
-    let average = sum / week.length;
-
-    if (average < lowest) {
-      lowest = average;
-    }
-  }
-
-  return lowest;
+  // Solution
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -296,16 +335,31 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 ------------------------------------------------------------------------------------------------ */
 
 const excel = (str) => {
+  // Split the input string into an array of rows using the newline character "\n" as the separator
   const rows = str.split('\n');
+
+  // Create an empty array to store the sums of values in each row
   const sums = [];
+
+  // Iterate over each row in the rows array
   for (let row of rows) {
+    // Split the current row into an array of columns using the comma "," as the separator
     const columns = row.split(',');
+
+    // Initialize a variable to store the sum of values in the current row
     let sum = 0;
+
+    // Iterate over each column in the columns array
     for (let column of columns) {
+      // Convert the value from string to integer using the parseInt function and add it to the sum
       sum += parseInt(column);
     }
+
+    // Push the sum of values in the current row to the sums array
     sums.push(sum);
   }
+
+  // Return the sums array containing the sum of values in each row
   return sums;
 };
 
