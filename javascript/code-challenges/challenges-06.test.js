@@ -119,7 +119,7 @@ const a = [1, 2]; NOTE: If you assign an array to a `const`, you can't re-assign
 const b = [3, 4];
 append(a, b);
 console.log(a) prints [1, 2, 3, 4]
------------------------------------------------------------------------------------------------- */
+-------------------------------------------------------------------------------------------- */
 
 const append = (arr1, arr2) => {
   // Solution code here...
